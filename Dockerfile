@@ -27,3 +27,9 @@ EXPOSE 9000
 
 # Run Laravel migrations
 CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
+
+# Set correct permissions for storage and cache
+RUN chmod -R 777 /var/www/storage /var/www/bootstrap/cache
+
+# Generate Laravel app key
+RUN php artisan key:generate
